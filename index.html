@@ -839,7 +839,7 @@ body.lock{overflow:hidden}
 
 <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu" hidden>
   <div class="menuback" data-mclose></div>
-  <aside class="menupanel">
+  <aside class="menupanel" data-lenis-prevent>
     <div class="mtop"><img src="n-mark.png" alt="Nexora Media"><button class="mx" type="button" aria-label="Fechar menu" data-mclose>×</button></div>
     <nav class="mlinks" aria-label="Seções do site">
       <a href="#inicio"><i>01</i>Início</a>
@@ -862,7 +862,7 @@ body.lock{overflow:hidden}
 
 <div class="modal" id="plans" role="dialog" aria-modal="true" aria-labelledby="plansTitle" hidden>
   <div class="mback" data-close></div>
-  <div class="mpanel" id="mpanel">
+  <div class="mpanel" id="mpanel" data-lenis-prevent>
     <button class="mclose" type="button" aria-label="Fechar" data-close>×</button>
 
     <div class="mview" id="vList">
@@ -1190,7 +1190,7 @@ body.lock{overflow:hidden}
 
   if(window.gsap && window.ScrollTrigger && !reduce){
     gsap.registerPlugin(ScrollTrigger);
-    if(window.Lenis){ lenis=new Lenis({lerp:.09}); lenis.on('scroll',()=>{ScrollTrigger.update();dockCheck();});
+    if(window.Lenis){ lenis=new Lenis({lerp:.09,prevent:n=>!!(n.closest&&n.closest('.mpanel,.menupanel'))}); lenis.on('scroll',()=>{ScrollTrigger.update();dockCheck();});
       gsap.ticker.add(t=>lenis.raf(t*1000)); gsap.ticker.lagSmoothing(0);
       $$('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const t=$(a.getAttribute('href')); if(t){e.preventDefault(); lenis.scrollTo(t,{offset:-10});}})); }
 
